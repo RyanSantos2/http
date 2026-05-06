@@ -27,86 +27,108 @@
 
 ## Atividade 1 — Primeira captura (`http://example.com`)
 
-**Captura de tela:** `evidencias/atv1_sessao.png`
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/90be406b-a5b4-43a2-8710-c1143f07c190" />
+
+
 
 **Request-line enviada:**
 
 ```http
-[colar aqui a linha inicial do request, ex: GET / HTTP/1.1]
+GET http://example.com/ HTTP/1.1
 ```
 
 **Status-line recebida:**
 
 ```http
-[colar aqui, ex: HTTP/1.1 200 OK]
+HTTP/1.1 304 Not Modified
+
 ```
 
 ### Pergunta 1.1
 > Quantos cabeçalhos o navegador enviou no request? Liste-os.
 
 **Resposta:**
-[número total]
+9
 
 Cabeçalhos:
-- [cabeçalho 1]
-- [cabeçalho 2]
-- ...
+Date: Wed, 06 May 2026 01:46:46 GMT
+Connection: keep-alive
+Allow: GET, HEAD
+Age: 7717
+Server: cloudflare
+Last-Modified: Fri, 01 May 2026 01:24:29 GMT
+etag: "69f400cd-210"
+cf-cache-status: HIT
+CF-RAY: 9f745025ea4c1b1d-GRU
+
 
 ### Pergunta 1.2
 > Qual foi o `Content-Length` da resposta? Se ele não apareceu, registre `Transfer-Encoding`, versão do protocolo ou outro indício observado. O corpo retornado é HTML, texto puro, JSON ou binário? Como você descobriu?
 
-**Resposta:** [...]
+Transfer-Encoding
 
 ---
 
 ## Atividade 2 — Anatomia de um GET (`http://httpbin.org/get?...`)
 
-**Captura de tela:** `evidencias/atv2_raw.png`
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/5f97279b-3c39-4765-a042-676e0688be3c" />
+
 
 **Request-line completa:**
 
 ```http
-[colar aqui]
+GET http://httpbin.org/get?aluno=SEU_NOME&curso=redes HTTP/1.1
 ```
 
 **Cabeçalhos-chave capturados:**
 
-| Cabeçalho    | Valor                    |
-|--------------|--------------------------|
-| `Host`       | [...]                    |
-| `User-Agent` | [...]                    |
-| `Accept`     | [...]                    |
+Host: httpbin.org
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate
+Accept-Language: pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7
+
 
 **Campos do JSON de resposta:**
 
 ```json
 {
-  "args":    [colar valor],
-  "headers": [colar valor resumido],
-  "origin":  [colar valor]
-}
+  "args": {
+    "aluno": "SEU_NOME", 
+    "curso": "redes"
+  }, 
+  "headers": {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7", 
+    "Accept-Encoding": "gzip, deflate", 
+    "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7", 
+    "Host": "httpbin.org", 
+    "Upgrade-Insecure-Requests": "1", 
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36", 
+    "X-Amzn-Trace-Id": "Root=1-69faa092-3e43bba25df8f561765b5694"
+  }, 
+  "origin": "152.243.125.150", 
+  "url": "http://httpbin.org/get?aluno=SEU_NOME&curso=redes"
+
 ```
 
 ### Pergunta 2.1
 > O valor do campo `origin` corresponde a qual elemento da rede? Por que normalmente não é o IP local?
 
-**Resposta:** [...]
+Corresponde ao IP público. Pois é devido ao uso de NAT pelo roteador ou provedor de internet.
 
 ### Pergunta 2.2
 > Compare o `User-Agent` enviado com o que aparece no JSON da resposta. Coincidem?
 
-**Resposta:** [...]
+Sim, coincidem
 
 ### Pergunta 2.3
 > Em `http://httpbin.org/headers`, liste até três cabeçalhos que o servidor vê mas **não aparecem** no Raw do request. De onde vêm? Se não encontrar três, explique por que o resultado pode variar.
 
-**Resposta:**
+Apenas um cabeçalho extra é visível em relação ao que o navegador enviou originalmente: X-Amzn-Trace-Id. O número de cabeçalhos extras depende inteiramente de quais e quantos intermediários existem no caminho entre computador e o servidor final
 
-| Cabeçalho visto pelo servidor | Origem provável | Observação |
-|-------------------------------|-----------------|------------|
-| [...]                         | [...]           | [...]      |
-| [...]                         | [...]           | [...]      |
-| [...]                         | [...]           | [...]      |
+"X-Amzn-Trace-Id": "Root=1-69faa4a1-03a2430a500d650027738f00
 
 ---
 
