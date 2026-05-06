@@ -134,55 +134,119 @@ Apenas um cabeçalho extra é visível em relação ao que o navegador enviou or
 
 ## Atividade 3 — POST e envio de formulário (`http://httpbin.org/forms/post` → `/post`)
 
-**Captura de tela:** `evidencias/atv3_post_raw.png`
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/a5c91e63-b783-4807-b963-e377de8a6a51" />
+
 
 **Request-line do POST:**
 
 ```http
-[colar aqui]
+POST http://httpbin.org/post HTTP/1.1
 ```
 
 **Cabeçalhos do request:**
 
-| Cabeçalho        | Valor |
-|------------------|-------|
-| `Content-Type`   | [...] |
-| `Content-Length` | [...] |
+Content-Type: application/json
+Content-Length: 1170
 
 **Corpo completo do request:**
 
 ```
-[colar aqui o body enviado]
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {
+    "comments": "subir e bater na porta ", 
+    "custemail": "teste@teste.com", 
+    "custname": "ryan santos ", 
+    "custtel": "13 34226531", 
+    "delivery": "17:00", 
+    "size": "small", 
+    "topping": [
+      "bacon", 
+      "cheese", 
+      "onion"
+    ]
+  }, 
+  "headers": {
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7", 
+    "Accept-Encoding": "gzip, deflate", 
+    "Accept-Language": "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7", 
+    "Cache-Control": "max-age=0", 
+    "Content-Length": "173", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org", 
+    "Origin": "http://httpbin.org", 
+    "Referer": "http://httpbin.org/forms/post", 
+    "Upgrade-Insecure-Requests": "1", 
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36", 
+    "X-Amzn-Trace-Id": "Root=1-69fb90f5-0e8135642c85bbac0d8f214c"
+  }, 
+  "json": null, 
+  "origin": "152.243.125.150", 
+  "url": "http://httpbin.org/post"
+}
+
 ```
 
 **Trecho do JSON de resposta (campo `form`):**
 
 ```json
 "form": {
-  [colar aqui]
-}
+    "comments": "subir e bater na porta ", 
+    "custemail": "teste@teste.com", 
+    "custname": "ryan santos ", 
+    "custtel": "13 34226531", 
+    "delivery": "17:00", 
+    "size": "small", 
+    "topping": [
+      "bacon", 
+      "cheese", 
+      "onion"
+    ]
+  }, 
+
 ```
 
 ### Pergunta 3.1
 > Qual o formato do corpo? Como esse formato codifica caracteres especiais (espaço, acentos)?
 
-**Resposta:** [...]
+Content-Type: application/x-www-form-urlencoded Funciona através de Percent-enconding (URL enconding)
+
 
 ### Pergunta 3.2
 > Comparando **Request → WebForms** e **Request → Raw**: qual das duas corresponde literalmente aos bytes enviados no socket TCP?
 
-**Resposta:** [...]
+Request -> **Request → Raw**
+
 
 ### Pergunta 3.3 — Composer
 > Envie manualmente via Composer um `POST` para `http://httpbin.org/post` com JSON. Registre a resposta. Qual campo do JSON confirma que o servidor interpretou o JSON?
 
-**Captura de tela:** `evidencias/atv3_composer.png`
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/e632493e-d568-4609-ad8e-b7a4b1812288" />
+
 
 **Response JSON (trecho relevante):**
 
 ```json
 {
-  [colar aqui]
+  {
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {}, 
+  "headers": {
+    "Content-Length": "0", 
+    "Content-Type": "application/json", 
+    "Host": "httpbin.org", 
+    "User-Agent": "Fiddler", 
+    "X-Amzn-Trace-Id": "Root=1-69fb9933-5102fdd90c0dc69714138151"
+  }, 
+  "json": null, 
+  "origin": "152.243.125.150", 
+  "url": "http://httpbin.org/post"
+}
+
 }
 ```
 
@@ -223,36 +287,40 @@ Apenas um cabeçalho extra é visível em relação ao que o navegador enviou or
 
 ## Atividade 5 — Identificação de cabeçalhos (`http://httpbin.org/response-headers?...` + `/gzip`)
 
-**Captura de tela (Inspectors → Headers):** `evidencias/atv5_headers.png`
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/502408f9-7a72-46ef-a37a-e0d13e801e21" />
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/7032b33d-11f4-4b83-8c93-03b515a8462d" />
+
+
 
 | Cabeçalho                    | Req/Resp | Valor capturado | Função em uma frase |
 |------------------------------|----------|------------------|----------------------|
-| `Host`                       | [...]    | [...]            | [...]                |
-| `User-Agent`                 | [...]    | [...]            | [...]                |
-| `Accept`                     | [...]    | [...]            | [...]                |
-| `Accept-Encoding`            | [...]    | [...]            | [...]                |
-| `Cookie`                     | [...]    | [...]            | [...]                |
-| `Server`                     | [...]    | [...]            | [...]                |
-| `Content-Type`               | [...]    | [...]            | [...]                |
-| `Content-Encoding`           | [...]    | [...]            | [...]                |
-| `Set-Cookie`                 | [...]    | [...]            | [...]                |
-| `Cache-Control`              | [...]    | [...]            | [...]                |
-| `Strict-Transport-Security`  | [...]    | [...]            | [...]                |
+| `Host`                       | Req    | httpbin.org        | Especifica o domínio do servidor alvo da requisição. |
+| `User-Agent`                 | Req    | Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36 | Identifica o software cliente e o sistema operacional fazendo a requisição. |
+| `Accept`                     | Req    | text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7| Informa ao servidor os tipos de mídia (formatos) que o cliente consegue entender. |
+| `Accept-Encoding`            | Req    | gzip, deflate      | Indica quais algoritmos de compressão o cliente suporta para a resposta. |
+| `Cookie`                     | Req    | teste=1            | Envia de volta ao servidor dados de estado previamente armazenados pelo cliente. |
+| `Server`                     | Resp   | gunicorn/19.9.0    | Identifica o software do servidor web que gerou a resposta. |
+| `Content-Type`               | Resp   | application/json   | Indica o tipo de mídia (formato) do corpo da mensagem que está sendo enviada. |
+| `Content-Encoding`           | Resp   | gzip               | Indica qual algoritmo de compressão foi aplicado ao corpo da resposta. |
+| `Set-Cookie`                 | Resp   | teste=1            | Instrução do servidor para o cliente armazenar um cookie em sua máquina. |
+| `Cache-Control`              | Resp   | max-age=3600       | Define diretivas e regras sobre como a resposta deve ser armazenada em cache. |
+| `Strict-Transport-Security`  | Resp   | Ausente            | Força o cliente a se comunicar com o servidor apenas via conexão segura (HTTPS). |
 
 ### Pergunta 5.1
 > `Content-Encoding: gzip`/`br` apareceu? Compare `Content-Length`, quando presente, com o conteúdo visível. O que explica a diferença?
 
-**Resposta:** [...]
+**Resposta:** Sim, na requisição para o endpoint `/gzip`, o servidor retornou `Content-Encoding: gzip`. O valor do `Content-Length` (tamanho em bytes transmitido pela rede) é menor do que o tamanho do texto visível na aba **TextView**. Isso ocorre porque o `Content-Length` representa o tamanho do arquivo **compactado** que trafegou na rede.
 
 ### Pergunta 5.2
 > Cliente envia `Accept: application/json` mas o recurso só existe em `text/html`. Qual status code esperar?
 
-**Resposta:** [...]
+**Resposta:** Segundo a especificação HTTP, se o servidor não for capaz de fornecer uma resposta com as características de formato aceitas pelo cliente (declaradas no cabeçalho `Accept`), ele deve retornar o código de status **`406 Not Acceptable`**. Isso indica ao cliente que o recurso existe, mas não no formato que o cliente declarou conseguir processar.
 
 ### Pergunta 5.3
 > `Strict-Transport-Security` apareceu nas respostas HTTP? Por que esse cabeçalho está ausente neste fluxo? (Consulte a RFC 6797.) Qual é seu papel contra downgrades para HTTP puro?
 
-**Resposta:** [...]
+**Resposta:** Não, o cabeçalho não apareceu. Ele está ausente porque todas as requisições destes testes foram feitas via protocolo **HTTP puro (não criptografado)** no endereço `http://httpbin.org`. Segundo a RFC 6797, os servidores não devem enviar o cabeçalho HSTS em conexões HTTP inseguras (e se enviarem, o cliente deve ignorar, pois a rede não é confiável). 
+O papel do HSTS (HTTP Strict Transport Security) é proteger os usuários contra ataques de *downgrade* (como o SSL Stripping). Uma vez que o cliente recebe esse cabeçalho através de uma conexão HTTPS válida, ele memoriza que aquele domínio específico só pode ser acessado via HTTPS. A partir daí, qualquer tentativa futura de acessar o site via `http://` será bloqueada ou convertida automaticamente para `https://` pelo próprio navegador de forma interna, sem nem deixar a requisição insegura sair para a rede.
 
 ---
 
