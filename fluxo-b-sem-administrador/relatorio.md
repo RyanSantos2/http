@@ -12,15 +12,15 @@
 
 | Campo       | Valor                  |
 |-------------|------------------------|
-| Nome        | [seu nome completo]    |
-| RA          | [seu RA]               |
+| Nome        | Ryan Santos    |
+| Nome        | João Marcelo    |
 | Disciplina  | Redes de Computadores  |
-| Turma       | [sua turma]            |
-| Data        | [data da realização]   |
+| Turma       | SI II Ciclo         |
+| Data        | 05/05/2026   |
 | Fluxo       | **B — Aluno sem privilégio de administrador** |
-| SO utilizado | [Windows 11 / Ubuntu 22.04 / macOS ...] |
-| Ferramenta de proxy | [Fiddler Classic per-user / mitmproxy / HTTP Toolkit / ...] |
-| Navegador(es)       | [Chrome 124 / Firefox 125 / ...] |
+| SO utilizado | [Windows 10 |
+| Ferramenta de proxy | [Fiddler Classic per-user  |
+| Navegador(es)       | [Chrome 148.0 |
 | HTTPS-First Mode / HTTPS-Only desabilitado? | [sim / não] |
 
 ---
